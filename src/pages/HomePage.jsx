@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
+import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch, AiFillTag } from "react-icons/ai";
 import TrendMovieList from "../api/TrendMovieList";
 import Verification from "./Verification";
+import Footer from "../Footer";
+
+
 
 const HomePage = () => {
 
@@ -92,6 +96,8 @@ const HomePage = () => {
     // Nav search:
     const [inputValue, setInputValue] = useState('');
 
+    const [nav, setNav] = useState(false)
+
     const handleInputChange = (e) => {
         setInputValue(e.target.value)
         setactiveSearchBoolean(true)
@@ -128,40 +134,77 @@ const HomePage = () => {
 
     return (
         <div>
-        <Link to='/login'>
-        <button>Login</button>
-        </Link>
-            <div className="w-[300px] lg:pr-2">
-                <div className="relative flex w-full flex-wrap items-stretch">
-                    <input
-                        type="Search"
-                        className="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none motion-reduce:transition-none dark:border-neutral-500 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-                        placeholder="Search"
-                        aria-label="Search"
-                        id="Search"
-                        value={inputValue}
-                        onChange={handleInputChange}
-                        onKeyUp={handleKeyPress}
-                        aria-describedby="button-addon3" />
-                    <button
-                        className="relative z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 motion-reduce:transition-none"
-                        type="button"
-                        id="button-addon3"
-                        data-te-ripple-init
-                        onClick={handleSearchClick}>
-                        Search
-                    </button>
+            <nav className='bg-gray-800 border-b border-gray-600 '>
+                <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
+                    <div className='flex justify-between h-16'>
+                        <div className='flex'>
+                            <div className='flex-shrink-0 flex items-center'>
+                                <span className='text-xl font-serif sm:text-2xl md:text-3xl lg:text-4xl font-bold'><span className='text-red-600'>M</span>ovies <span className='text-red-600'>C</span>atcher</span>
+                            </div>
+                            <div className='hidden md:flex md:ml-6 '>
+                                <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Movies</a>
+                                <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Tv Show</a>
+                                <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Anime</a>
+
+                            </div>
+                        </div>
+                        <div className='hidden md:flex items-center'>
+                            <div className="bg-gray-900 rounded-full flex items-center px-2 ">
+                                <AiOutlineSearch size={25} onClick={resetGuestIdHandler} />
+                                <input className="bg-transparent p-2 focus:outline-none focus:border-blue-500 w-full" type="text" placeholder="Search" onChange={handleInputChange}
+                                    onKeyUp={handleKeyPress} />
+                            </div>
+
+                            <Link to='/login'>
+                                <button className='ml-4 rounded-full py-2 px-4 bg-red-600'>Login</button>
+                            </Link>
+                        </div>
+                        <div className='md:hidden flex items-center'>
+                            <div onClick={() => setNav(!nav)} className="cursor-pointer">
+                                <AiOutlineMenu size={30} />
+                            </div>
+                        </div>
+                        {nav ? <div className="bg-black/80 fixed w-full h-screen z-10 top-0 left-0"></div> : ''}
+
+
+                        {/* Side drawer menu */}
+                        <div className={nav ? "fixed top-0 left-0 w-[300px] h-screen bg-gray-800/40 z-10 duration-300 " : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"}>
+                            <AiOutlineClose onClick={() => setNav(!nav)} className="absolute right-4 top-4 cursor-pointer" size={30} />
+                            <h2 className="text-2xl p-4 font-serif"><span className="font-bold text-red-600">M</span>ovie <span className="font-bold text-red-600">C</span>atcher</h2>
+                            <nav>
+                                <ul className="flex flex-col p-4 text-gray-300 items-center text-2xl border-b border-gray-600 font-bold ">
+                                    <h1 className=''>Movies</h1>
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
                 </div>
+            </nav>
+            
+            <button onClick={resetGuestIdHandler}>Reset Guest ID</button>
+            
+            
+            
+            {trendMovies.results && <TrendMovieList trendMovies={trendMovies.results} />}
+            <div className="flex items-center justify-center mt-3">
+                <button onClick={previousPageHandler} className="bg-white text-black hover:bg-yellow-900 font-bold py-2 px-4 rounded-full mr-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+                </svg>
+                </button>
+                <p>Current Page: {page}</p>
+                <button className="bg-red-600 hover:bg-yellow-900 font-bold py-2 px-4 rounded-full ml-3" onClick={nextPageHandler}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                </svg>
+                </button>
             </div>
+            <div className="flex justify-between px-5 my-10">
+            <p>Total Pages {totalPages}</p>
             <p>
                 GuestId: {guestId}
             </p>
-            <button onClick={resetGuestIdHandler}>Reset Guest ID</button>
-            {trendMovies.results && <TrendMovieList trendMovies={trendMovies.results} />}
-            <button onClick={nextPageHandler}>next page</button>
-            <p>Current Page: {page}</p>
-            <button onClick={previousPageHandler}>previous page</button>
-            <p>Total Pages {totalPages}</p>
+            </div>
+            <Footer />
 
 
         </div>

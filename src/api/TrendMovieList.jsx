@@ -2,7 +2,10 @@ import TrendMovieItem from "./TrendMovieItem"
 
 const TrendMovieList =(props) => {
     return(
-        <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6'>
+        <div className="container mx-auto ">
+            <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl text-yellow-500 font-semibold mt-20">Trending Movies</h1>
+            <div className="border-b border-gray-600 mt-4"></div>
+            <ul className='flex flex-wrap mx-4 pt'>
             {
                 props.trendMovies.map((movie) => (
                     <TrendMovieItem
@@ -17,6 +20,8 @@ const TrendMovieList =(props) => {
                 ))
             }
         </ul>
+        
+        </div>
     )
 }
 export default TrendMovieList
