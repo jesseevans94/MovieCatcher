@@ -1,8 +1,9 @@
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/Login";
 import { Route, Routes } from "react-router-dom"
 import Layout from "./layout/Layout";
 
 import HomePage from "./pages/HomePage";
+import SignupPage from "./pages/Signup";
 
 // {/* <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
 //   <div>
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/signup' element={<SignupPage />} />
       </Routes>
     </Layout>
   )
