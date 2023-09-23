@@ -5,6 +5,7 @@ import Layout from "./layout/Layout";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/Signup";
 
+
 // {/* <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
 //   <div>
 //     <span class="inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg">
@@ -22,7 +23,6 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/signup' element={<SignupPage />} />
       </Routes>
     </Layout>
   )
