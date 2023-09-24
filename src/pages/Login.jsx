@@ -3,6 +3,7 @@ import Header from "../components/Header"
 import Login from "../components/Login"
 
 const LoginPage = () =>  {
+    
     return(<>
         <Header
                 heading="Login to your account"
@@ -11,9 +12,11 @@ const LoginPage = () =>  {
                 linkUrl="/signup"
                 />
                 <Login/>
+                
         <Link to='/'>
             <button>Go back </button>
         </Link>
+        
     </>)
 }
 export default LoginPage
