@@ -6,6 +6,12 @@ import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/Signup";
 
 
+function App() {
+  return (
+
+    // const sunIcon = document.querySelector(".sun");
+    // Const moonIcon = document.querySelector(".moon");
+
 // {/* <div class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl">
 //   <div>
 //     <span class="inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg">
@@ -17,8 +23,7 @@ import SignupPage from "./pages/Signup";
 //     The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
 //   // </p>
 // // </div> */}
-function App() {
-  return (
+
     <Layout>
       <Routes>
         <Route path='/' element={<HomePage />} />
