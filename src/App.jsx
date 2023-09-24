@@ -4,6 +4,7 @@ import Layout from "./layout/Layout";
 
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/Signup";
+import MovieDetailsPages from "./pages/MovieDetailsPages";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage/>}/>
+        <Route path='/movieDetails' element={<MovieDetailsPages />}/>
       </Routes>
     </Layout>
   )

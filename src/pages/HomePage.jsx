@@ -185,8 +185,9 @@ const HomePage = () => {
             <button onClick={resetGuestIdHandler}>Reset Guest ID</button>
             
             
-            
+            <Link to='/movieDetails'>
             {trendMovies.results && <TrendMovieList trendMovies={trendMovies.results} />}
+            </Link>
             <div className="flex items-center justify-center mt-3">
                 <button onClick={previousPageHandler} className="bg-white text-black hover:bg-yellow-900 font-bold py-2 px-4 rounded-full mr-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
