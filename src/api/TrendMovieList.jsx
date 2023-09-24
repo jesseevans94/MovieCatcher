@@ -1,4 +1,6 @@
+import MovieDetailsPages from "../pages/MovieDetailsPages"
 import TrendMovieItem from "./TrendMovieItem"
+
 
 const TrendMovieList =(props) => {
     return(
@@ -20,6 +22,20 @@ const TrendMovieList =(props) => {
                 ))
             }
         </ul>
+        
+        {/* {
+                props.trendMovies.map((movie) => (
+                    <MovieDetailsPages
+                    key={movie.id}
+                    title={movie.title}
+                    overview={movie.overview}
+                    image={movie.poster_path}
+                    releaseDate={movie.release_date}
+                    mediaType={movie.media_type}
+                    lang={movie.original_language}
+                    />
+                ))
+            } */}
         
         </div>
     )
