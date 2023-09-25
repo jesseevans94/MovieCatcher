@@ -10,31 +10,6 @@ const TrendMovieList = (props) => {
         Trending Movies
     </h1>
 
-<<<<<<< HEAD
-const TrendMovieList =(props) => {
-    return(
-        <div className="container mx-auto ">
-            {/* <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl text-yellow-500 font-semibold mt-20">Trending Movies</h1> */}
-            <div className="border-b border-gray-600 mt-4"></div>
-            <ul className='flex flex-wrap mx-4 pt'>
-            {
-                props.trendMovies.map((movie) => (
-                    <TrendMovieItem
-                    key={movie.id}
-                    id={movie.id}
-                    title={movie.title}
-                    overview={movie.overview}
-                    image={movie.poster_path}
-                    releaseDate={movie.release_date}
-                    mediaType={movie.media_type}
-                    lang={movie.original_language}
-                    />
-                ))
-            }
-        </ul>
-        
-        </div>
-=======
     {/* Display a list of genres */}
     <GenreList />
 
@@ -59,7 +34,6 @@ const TrendMovieList =(props) => {
         ))}
     </ul>
 </div>
->>>>>>> 87f5e90e8f81d6aaf3e24e4f739bf71d9bd5a93b
     )
 }
 export default TrendMovieList
