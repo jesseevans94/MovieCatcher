@@ -184,7 +184,9 @@ const HomePage = () => {
                             <div className='hidden md:flex md:ml-2 '>
                                 <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Movies</a>
                                 <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Tv Show</a>
+                                <Link to="/About">
                                 <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>About us</a>
+                                </Link>
 
                             </div>
                         </div>
