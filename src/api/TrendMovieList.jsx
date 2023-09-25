@@ -26,7 +26,7 @@ const TrendMovieList = (props) => {
                 overview={movie.overview}  // Movie overview
                 image={movie.poster_path}  // Movie poster image
                 releaseDate={movie.release_date}  // Movie release date
-                mediaType={movie.media_type}  // Movie media type (e.g., movie, TV show)
+                // mediaType={movie.media_type}  // Movie media type (e.g., movie, TV show)
                 lang={movie.original_language}  // Movie original language
                 className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 p-2"  // Adjusted width for larger screens
                 // Adjusted width for screens smaller than 640px
