@@ -6,15 +6,15 @@ const TrendMovieList = (props) => {
     return (
         <div className="container mx-auto sm:max-w-screen-xl">
     {/* Heading for Trending Movies */}
-    <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-semibold mt-20 px-6 py-4 rounded-lg shadow-lg">
+    {/* <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-semibold mt-20 px-6 py-4 rounded-lg shadow-lg">
         Trending Movies
-    </h1>
+    </h1> */}
 
     {/* Display a list of genres */}
-    <GenreList />
+    {/* <GenreList /> */}
 
     {/* Horizontal line separator */}
-    <div className="border-b border-gray-600 mt-4"></div>
+    {/* <div className="border-b border-gray-600 mt-4"></div> */}
 
     {/* Display a list of trending movies */}
     <ul className="flex flex-wrap mx-2 md:mx-4 pt-2">
@@ -22,6 +22,7 @@ const TrendMovieList = (props) => {
             /* Display each trending movie item */
             <TrendMovieItem
                 key={movie.id}  // Unique key for React list rendering
+                id={movie.id}
                 title={movie.title}  // Movie title
                 overview={movie.overview}  // Movie overview
                 image={movie.poster_path}  // Movie poster image

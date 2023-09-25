@@ -28,13 +28,7 @@ const TrendMovieItem = (props) => {
         <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:max-w-7xl p-4 border-b border-gray-600">
             <Link to={{
                 pathname: "/movieDetails",
-                search: `?title=${encodeURIComponent(props.title)}
-                &overview=${encodeURIComponent(props.overview)}
-                &image=${encodeURIComponent(props.image)}
-                &releaseDate=${encodeURIComponent(props.releaseDate)}
-                &mediaType=${encodeURIComponent(props.mediaType)}
-                &lang=${encodeURIComponent(props.lang)}
-                `,
+                search: `?id=${encodeURIComponent(props.id)}`,
                 }}
                 >
             {console.log("ItemTitle:",props.title)}

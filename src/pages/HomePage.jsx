@@ -129,40 +129,40 @@ const HomePage = () => {
     }
 
     //Create MovieList
-    const [listName,setListName] =useState('')
-    const [listDescription,setlistDescription] =useState('')
+    const [listName, setListName] = useState('')
+    const [listDescription, setlistDescription] = useState('')
 
     const listNameHandler = (e) => {
         setListName(e.target.value)
     }
 
-    const listDescriptionHandler =(e) =>{
+    const listDescriptionHandler = (e) => {
         setlistDescription(e.target.value)
     }
 
-    const createMovieListHandler =() =>{
+    const createMovieListHandler = () => {
         const url = `https://api.themoviedb.org/3/list?session_id=16eee5247a3a379d2ca1a1ddce0f0739a07df111`;
-const options = {
-  method: 'POST',
-  headers: {
-    accept: 'application/json',
-    'content-type': 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
-  },
-  body: JSON.stringify({
-    name: listName,
-    description: listDescription,
-    language: 'en'
-  })
-};
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+            },
+            body: JSON.stringify({
+                name: listName,
+                description: listDescription,
+                language: 'en'
+            })
+        };
 
-fetch(url, options)
-  .then(res => res.json())
-  .then(json => console.log(json))
-  .catch(err => console.error('error:' + err));
+        fetch(url, options)
+            .then(res => res.json())
+            .then(json => console.log(json))
+            .catch(err => console.error('error:' + err));
     }
 
-    
+
 
     //reset GuestID
     const resetGuestIdHandler = () => {
@@ -171,7 +171,7 @@ fetch(url, options)
         setGuestId(localStorage.getItem('guestID'))
     }
 
-    
+
     return (
         <div>
             <nav className='bg-gray-800 border-b border-gray-600 '>
@@ -202,7 +202,7 @@ fetch(url, options)
                         <div>
                             Name: <input placeholder="Name" onChange={listNameHandler}></input>
                             <div>
-                            Description: <input placeholder="Description" onChange={listDescriptionHandler}></input>
+                                Description: <input placeholder="Description" onChange={listDescriptionHandler}></input>
                             </div>
                             <button onClick={createMovieListHandler}>Add List</button>
                         </div>
@@ -212,8 +212,6 @@ fetch(url, options)
                             </div>
                         </div>
                         {nav ? <div className="bg-black/95 fixed w-full h-screen z-10 top-0 left-0"></div> : ''}
-
-
                         {/* Side drawer menu */}
                         {/* OverLay */}
                         <div className={nav ? "fixed top-0 left-0 w-[300px] h-screen bg-gray-800/40 z-10 duration-300 " : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"}>
@@ -232,10 +230,19 @@ fetch(url, options)
             </nav>
 
             <button onClick={resetGuestIdHandler}>Reset Guest ID</button>
-            
-            
-            
+            <div className="container mx-auto sm:max-w-screen-xl">
+    {/* Heading for Trending Movies */}
+    <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-semibold mt-20 px-6 py-4 rounded-lg shadow-lg">
+        Trending Movies
+    </h1>
+
+    {/* Display a list of genres */}
+    <GenreList />
+
+    {/* Horizontal line separator */}
+    <div className="border-b border-gray-600 mt-4"></div>
             {trendMovies.results && <TrendMovieList trendMovies={trendMovies.results} />}
+            </div>
             <div className="flex items-center justify-center mt-3">
                 <button onClick={previousPageHandler} className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full mr-3 transition duration-300 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
@@ -254,7 +261,7 @@ fetch(url, options)
                 <p className="text-lg">Total Pages: {totalPages}</p>
                 <p className="text-lg">Guest ID: {guestId}</p>
             </div>
-        <Footer />
+            <Footer />
 
 
         </div>
