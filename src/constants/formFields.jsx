@@ -2,7 +2,7 @@ const loginFields=[
     {
         labelText:"Email address",
         labelFor:"email-address",
-        id:"email-address",
+        id:"username",
         name:"email",
         type:"email",
         autoComplete:"email",

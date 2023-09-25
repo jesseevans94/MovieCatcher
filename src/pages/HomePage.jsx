@@ -4,6 +4,7 @@ import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import TrendMovieList from "../api/TrendMovieList";
 import Verification from "./Verification";
 import Footer from "../Footer";
+import MovieDetailsList from "../api/MovieDetailsList";
 import GenreList from "../components/GenreList";
 
 
@@ -15,6 +16,7 @@ const HomePage = () => {
     const [trendMovies, setTrendMovies] = useState([]);
     const [page, setPage] = useState(1)
     const [activeSearchBoolean, setactiveSearchBoolean] = useState(false)
+    const [selectedMovie, setSelectedMovie] = useState(null)
 
     const nextPageHandler = () => {
         if (page < totalPages) {
@@ -133,6 +135,7 @@ const HomePage = () => {
         setGuestId(localStorage.getItem('guestID'))
     }
 
+    
     return (
         <div>
             <nav className='bg-gray-800 border-b border-gray-600 '>
@@ -186,10 +189,9 @@ const HomePage = () => {
             </nav>
 
             <button onClick={resetGuestIdHandler}>Reset Guest ID</button>
-
-
-
-
+            
+            
+            
             {trendMovies.results && <TrendMovieList trendMovies={trendMovies.results} />}
             <div className="flex items-center justify-center mt-3">
                 <button onClick={previousPageHandler} className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full mr-3 transition duration-300 ease-in-out">
