@@ -240,7 +240,7 @@ const HomePage = () => {
     <GenreList />
 
     {/* Horizontal line separator */}
-    <div className="border-b border-gray-600 mt-4"></div>
+    <div className="border-b border-gray-600 mt-4 mb-5"></div>
             {trendMovies.results && <TrendMovieList trendMovies={trendMovies.results} />}
             </div>
             <div className="flex items-center justify-center mt-3">

@@ -1,6 +1,6 @@
-import MovieDetailsPages from "../pages/MovieDetailsPages"
+
 import TrendMovieItem from "./TrendMovieItem"
-import GenreList from "../components/GenreList"
+
 
 const TrendMovieList = (props) => {
     return (
@@ -30,7 +30,6 @@ const TrendMovieList = (props) => {
                 // mediaType={movie.media_type}  // Movie media type (e.g., movie, TV show)
                 lang={movie.original_language}  // Movie original language
                 className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/3 p-2"  // Adjusted width for larger screens
-                // Adjusted width for screens smaller than 640px
             />
         ))}
     </ul>
