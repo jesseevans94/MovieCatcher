@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch, AiFillTag } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import TrendMovieList from "../api/TrendMovieList";
 import Verification from "./Verification";
 import Footer from "../Footer";
+import GenreList from "../components/GenreList";
 
 
 
@@ -137,26 +138,26 @@ const HomePage = () => {
             <nav className='bg-gray-800 border-b border-gray-600 '>
                 <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
                     <div className='flex justify-between h-16'>
-                        <div className='flex'>
+                        <div className='flex md:mr-14'>
                             <div className='flex-shrink-0 flex items-center'>
-                                <span className='text-xl font-serif sm:text-2xl md:text-3xl lg:text-4xl font-bold'><span className='text-red-600'>M</span>ovies <span className='text-red-600'>C</span>atcher</span>
+                                <span className='text-xl font-serif sm:text-2xl md:text-3xl lg:text-4xl font-bold'><span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovies <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</span>
                             </div>
-                            <div className='hidden md:flex md:ml-6 '>
+                            <div className='hidden md:flex md:ml-2 '>
                                 <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Movies</a>
                                 <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Tv Show</a>
-                                <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Anime</a>
+                                <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>About us</a>
 
                             </div>
                         </div>
                         <div className='hidden md:flex items-center'>
                             <div className="bg-gray-900 rounded-full flex items-center px-2 ">
-                                <AiOutlineSearch size={25} onClick={resetGuestIdHandler} />
+                                <AiOutlineSearch size={25} onClick={handleSearchClick} className="cursor-pointer" />
                                 <input className="bg-transparent p-2 focus:outline-none focus:border-blue-500 w-full" type="text" placeholder="Search" onChange={handleInputChange}
                                     onKeyUp={handleKeyPress} />
                             </div>
 
                             <Link to='/login'>
-                                <button className='ml-4 rounded-full py-2 px-4 bg-red-600'>Login</button>
+                                <button className='ml-4 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-full text-sm px-5 py-2.5 '>Login</button>
                             </Link>
                         </div>
                         <div className='md:hidden flex items-center'>
@@ -164,16 +165,18 @@ const HomePage = () => {
                                 <AiOutlineMenu size={30} />
                             </div>
                         </div>
-                        {nav ? <div className="bg-black/80 fixed w-full h-screen z-10 top-0 left-0"></div> : ''}
+                        {nav ? <div className="bg-black/95 fixed w-full h-screen z-10 top-0 left-0"></div> : ''}
 
 
                         {/* Side drawer menu */}
+                        {/* OverLay */}
                         <div className={nav ? "fixed top-0 left-0 w-[300px] h-screen bg-gray-800/40 z-10 duration-300 " : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"}>
                             <AiOutlineClose onClick={() => setNav(!nav)} className="absolute right-4 top-4 cursor-pointer" size={30} />
-                            <h2 className="text-2xl p-4 font-serif"><span className="font-bold text-red-600">M</span>ovie <span className="font-bold text-red-600">C</span>atcher</h2>
+                            <h2 className="text-2xl p-4 font-serif"><span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovie <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</h2>
                             <nav>
                                 <ul className="flex flex-col p-4 text-gray-300 items-center text-2xl border-b border-gray-600 font-bold ">
-                                    <h1 className=''>Movies</h1>
+                                    <li className=''>Movies</li>
+
                                 </ul>
                             </nav>
 
@@ -181,30 +184,32 @@ const HomePage = () => {
                     </div>
                 </div>
             </nav>
-            
+
             <button onClick={resetGuestIdHandler}>Reset Guest ID</button>
-            
-            
-            
+
+
+
+
             {trendMovies.results && <TrendMovieList trendMovies={trendMovies.results} />}
             <div className="flex items-center justify-center mt-3">
-                <button onClick={previousPageHandler} className="bg-white text-black hover:bg-yellow-900 font-bold py-2 px-4 rounded-full mr-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
-                </svg>
+                <button onClick={previousPageHandler} className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full mr-3 transition duration-300 ease-in-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+                    </svg>
                 </button>
-                <p>Current Page: {page}</p>
-                <button className="bg-red-600 hover:bg-yellow-900 font-bold py-2 px-4 rounded-full ml-3" onClick={nextPageHandler}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                </svg>
+                <p className="text-lg">Current Page: {page}</p>
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full ml-3 transition duration-300 ease-in-out" onClick={nextPageHandler}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                    </svg>
                 </button>
             </div>
+
             <div className="flex justify-between px-5 my-10">
-            <p>Total Pages {totalPages}</p>
-            <p>
-                GuestId: {guestId}
-            </p>
+                <p className="text-lg">Total Pages: {totalPages}</p>
+                <p className="text-lg">Guest ID: {guestId}</p>
             </div>
-            <Footer />
+        <Footer />
 
 
         </div>
