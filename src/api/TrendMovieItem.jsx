@@ -34,7 +34,7 @@ const TrendMovieItem = (props) => {
     {/* Outer container for the component */}
 	
     <div
-        className={`relative overflow-hidden rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-xl hover:scale-105`}
+        className={`relative overflow-hidden rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-xl hover:scale-110`}
         onMouseEnter={handleMouseEnter}  // Event handler for mouse enter
         onMouseLeave={handleMouseLeave}  // Event handler for mouse leave
     >
@@ -45,13 +45,13 @@ const TrendMovieItem = (props) => {
                 src={`https://image.tmdb.org/t/p/w400${props.image}`}  // Image source URL
                 alt=""  
             />
-            {isHovered && <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300"></div>}
+            {isHovered && <div className="absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300"></div>}
             {/* Overlay when the mouse is hovered */}
         </div>
 
         {isHovered && (
             // Details displayed on mouse hover
-            <div className="absolute inset-0 flex flex-col p-4 bg-black bg-opacity-10 backdrop-blur-lg">
+            <div className="absolute inset-0 flex flex-col p-4 bg-black bg-opacity-10 backdrop-blur-sm">
                 <div className="text-white">
                     <p className="font-bold text-xl text-center mb-2">{props.title}</p>
                     <p className="text-center text-gray-300 mb-2">Release Date: {props.releaseDate}</p>
