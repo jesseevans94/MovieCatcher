@@ -4,7 +4,7 @@ const loginFields=[
         labelFor:"email-address",
         id:"username",
         name:"email",
-        type:"email",
+        type:"text",
         autoComplete:"email",
         isRequired:true,
         placeholder:"Email address"   

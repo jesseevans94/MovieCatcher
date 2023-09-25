@@ -127,6 +127,42 @@ const HomePage = () => {
         }
     }
 
+    //Create MovieList
+    const [listName,setListName] =useState('')
+    const [listDescription,setlistDescription] =useState('')
+
+    const listNameHandler = (e) => {
+        setListName(e.target.value)
+    }
+
+    const listDescriptionHandler =(e) =>{
+        setlistDescription(e.target.value)
+    }
+
+    const createMovieListHandler =() =>{
+        const url = `https://api.themoviedb.org/3/list?session_id=16eee5247a3a379d2ca1a1ddce0f0739a07df111`;
+const options = {
+  method: 'POST',
+  headers: {
+    accept: 'application/json',
+    'content-type': 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+  },
+  body: JSON.stringify({
+    name: listName,
+    description: listDescription,
+    language: 'en'
+  })
+};
+
+fetch(url, options)
+  .then(res => res.json())
+  .then(json => console.log(json))
+  .catch(err => console.error('error:' + err));
+    }
+
+    
+
     //reset GuestID
     const resetGuestIdHandler = () => {
         localStorage.removeItem('guestID')
@@ -162,6 +198,13 @@ const HomePage = () => {
                                 <button className='ml-4 rounded-full py-2 px-4 bg-red-600'>Login</button>
                             </Link>
                         </div>
+                        <div>
+                            Name: <input placeholder="Name" onChange={listNameHandler}></input>
+                            <div>
+                            Description: <input placeholder="Description" onChange={listDescriptionHandler}></input>
+                            </div>
+                            <button onClick={createMovieListHandler}>Add List</button>
+                        </div>
                         <div className='md:hidden flex items-center'>
                             <div onClick={() => setNav(!nav)} className="cursor-pointer">
                                 <AiOutlineMenu size={30} />
@@ -187,11 +230,11 @@ const HomePage = () => {
             
             <button onClick={resetGuestIdHandler}>Reset Guest ID</button>
             
-            
-            {console.log(trendMovies)}
+            <div className="container mx-auto ">
+            <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl text-yellow-500 font-semibold mt-20">Trending Movies</h1>
             {trendMovies.results && (<TrendMovieList trendMovies={trendMovies.results} />)}
             {/* {trendMovies.results && (<MovieDetailsList detailed={trendMovies.results} />)} */}
-            
+            </div>
             
             <div className="flex items-center justify-center mt-3">
                 <button onClick={previousPageHandler} className="bg-white text-black hover:bg-yellow-900 font-bold py-2 px-4 rounded-full mr-3"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
