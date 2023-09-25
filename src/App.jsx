@@ -5,6 +5,7 @@ import Layout from "./layout/Layout";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/Signup";
 import MovieDetailsPages from "./pages/MovieDetailsPages";
+import AboutPage from "./pages/AboutPage";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage/>}/>
         <Route path='/movieDetails' element={<MovieDetailsPages />}/>
+        <Route path='/About' element={<AboutPage />} />
       </Routes>
     </Layout>
   )
