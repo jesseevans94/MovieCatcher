@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import TrendMovieList from "../api/TrendMovieList";
 import Verification from "./Verification";
-import Footer from "../Footer";
+import Footer from "../components/Footer";
 import MovieDetailsList from "../api/MovieDetailsList";
 import GenreList from "../components/GenreList";
 
@@ -241,7 +241,7 @@ const HomePage = () => {
     {/* Display a list of genres */}
     <GenreList />
 
-    {/* Horizontal line separator */}
+    {/* separator */}
     <div className="border-b border-gray-600 mt-4 mb-5"></div>
             {trendMovies.results && <TrendMovieList trendMovies={trendMovies.results} />}
             </div>
