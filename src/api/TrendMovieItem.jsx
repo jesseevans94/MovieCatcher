@@ -24,7 +24,7 @@ const TrendMovieItem = (props) => {
 
   return (
 
-    <div className="w-full p-4 border-b border-gray-400 mb-10">
+    <div className="w-full p-4 border-b border-gray-600 mb-10">
   <Link
     to={{
       pathname: "/movieDetails",
