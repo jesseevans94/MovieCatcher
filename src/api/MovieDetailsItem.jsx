@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 
 const MovieDetailsItem = (props) => {
     return (
-        <div className="p-3 lg:px-10">
-            <div className="max-w-[1640px] mx-auto sm:max-w-screen-xl mt-10 md:mt-20 border-b border-gray-500 pb-4 flex flex-col md:flex-row items-center">
+        
+            <div className="max-w-[1640px] mx-auto sm:max-w-screen-xl mt-10 md:mt-20 border-b border-gray-500 pb-4 flex flex-col md:flex-row items-center p-3">
 
                 {/* Movie Image */}
                 <div className="flex-shrink-0 md:w-1/3">
@@ -51,7 +51,7 @@ const MovieDetailsItem = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
+        
     )
 }
 
