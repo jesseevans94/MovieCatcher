@@ -231,10 +231,10 @@ const HomePage = () => {
                             <nav>
                                 {/* Mobile menu links */}
                                 <div className="flex flex-col text-center space-y-5 py-12">
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium">Movies</a>
-                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium">Tv Show</a>
-                                    <Link to="/About">
-                                        <a href="#" className="text-gray-300 hover-bg-gray-700 hover-text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium">About us</a>
+                                    <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium">Movies</a>
+                                    <a href="/" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium">Tv Show</a>
+                                    <Link to="#">
+                                        <a href="/src/pages/AboutPage.jsx" className="text-gray-300 hover-bg-gray-700 hover-text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium">About us</a>
                                     </Link>
                                 </div>
                             </nav>
