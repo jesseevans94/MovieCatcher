@@ -174,81 +174,70 @@ const HomePage = () => {
 
 
     return (
-        <div className="max-w-[1640px] mx-auto w-full ">
-            <nav className='bg-gray-800/80 border-b border-gray-600 fixed w-full z-10'>
+        <div className="max-w-[1640px] mx-auto">
+            <nav className="max-w-[1640px] mx-auto bg-gray-800/80 border-b border-gray-600 fixed w-full z-10">
                 {/* Navbar container */}
-                <div className='max-w-[1640px] mx-auto px-4 sm:px-6 lg:px-8'>
+                <div className="max-w-[1640px] mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Navbar content */}
-                    <div className='flex justify-between h-16'>
+                    <div className="flex justify-between h-16">
                         {/* Left side of the Navbar */}
-                        <div className='flex md:mr-14'>
+                        <div className="flex md:mr-14">
                             {/* Logo and brand */}
-                            <div className='flex-shrink-0 flex items-center'>
+                            <div className="flex-shrink-0 flex items-center">
                                 {/* Movie Catcher Logo */}
-                                <span className='text-xl font-serif sm:text-3xl  md:text-3xl lg:text-4xl font-bold'><span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovies <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</span>
-                                <img
-                                    src='https://icons.iconarchive.com/icons/iconarchive/fat-sugar-food/512/Popcorn-icon.png'
-                                    alt='Movie Catcher Logo'
-                                    className='h-10 mr-4 rotate-12 ml-3'
-                                />
+                                <span className="text-xl font-serif sm:text-3xl md:text-3xl lg:text-4xl font-bold">
+                                    <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovies
+                                    <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher
+                                </span>
+                                <img src="https://icons.iconarchive.com/icons/iconarchive/fat-sugar-food/512/Popcorn-icon.png" alt="Movie Catcher Logo" className="h-10 mr-4 rotate-12 ml-3" />
                             </div>
-
                             {/* Navbar links for larger screens */}
-                            <div className='hidden xl:ml-7 lg:flex md:ml-2 shrink-0'>
-                                <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Movies</a>
-                                <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Tv Show</a>
+                            <div className="hidden lg:flex ml-2 shrink-0">
+                                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">Movies</a>
+                                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">Tv Show</a>
                                 <Link to="/About" className="flex">
-                                    <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>About us</a>
+                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">About us</a>
                                 </Link>
                             </div>
                         </div>
-
                         {/* Right side of the Navbar */}
-                        <div className='hidden md:flex items-center'>
+                        <div className="hidden md:flex items-center">
                             {/* Search bar */}
-                            <div className="bg-gray-900 rounded-full flex items-center px-2 ">
+                            <div className="bg-gray-900 rounded-full flex items-center px-2">
                                 <AiOutlineSearch size={20} onClick={handleSearchClick} className="cursor-pointer" />
                                 <input className="bg-transparent p-2 focus:outline-none focus:border-blue-500 w-full" type="text" placeholder="Search" onChange={handleInputChange} onKeyUp={handleKeyPress} />
                             </div>
-
                             {/* Login button */}
-                            <Link to='/login'>
+                            <Link to="/login">
                                 <button className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Login</button>
                             </Link>
                         </div>
-
                         {/* Hamburger menu for smaller screens */}
-                        <div className='lg:hidden flex items-center ml-5'>
-                            <div onClick={() => setNav(!nav)} className="cursor-pointer">
-                                <AiOutlineMenu size={30} />
-                            </div>
+                        <div className="lg:hidden flex items-center ml-5" onClick={() => setNav(!nav)}>
+                            <AiOutlineMenu size={30} />
                         </div>
-
                         {/* Overlay for the mobile menu */}
                         {nav ? <div className="bg-black/70 fixed w-full h-[50%] z-10 top-0 left-0"></div> : ''}
                         {/* Mobile menu */}
                         <div className={nav ? "fixed top-0 left-0 w-full h-[50%] bg-gray-800/40 z-10 duration-300" : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"}>
                             <AiOutlineClose onClick={() => setNav(!nav)} className="absolute right-4 top-4 cursor-pointer" size={30} />
                             <div className="flex items-center">
-                                <h2 className="text-2xl p-4 font-serif"><span className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovie <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</h2>
-                                <img
-                                    src='https://icons.iconarchive.com/icons/iconarchive/fat-sugar-food/512/Popcorn-icon.png'
-                                    alt='Movie Catcher Logo'
-                                    className='h-10 mr-4 rotate-12'
-                                />
+                                <h2 className="text-2xl p-4 font-serif">
+                                    <span className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovie
+                                    <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher
+                                </h2>
+                                <img src="https://icons.iconarchive.com/icons/iconarchive/fat-sugar-food/512/Popcorn-icon.png" alt="Movie Catcher Logo" className="h-10 mr-4 rotate-12" />
                             </div>
-
                             <nav>
                                 {/* Mobile menu links */}
-                                <div className=' flex flex-col text-center space-y-5 py-12'>
-                                    <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Movies</a>
-                                    <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Tv Show</a>
+                                <div className="flex flex-col text-center space-y-5 py-12">
+                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium">Movies</a>
+                                    <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium">Tv Show</a>
                                     <Link to="/About">
-                                        <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>About us</a>
+                                        <a href="#" className="text-gray-300 hover-bg-gray-700 hover-text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium">About us</a>
                                     </Link>
                                 </div>
                             </nav>
-
                         </div>
                     </div>
                 </div>
