@@ -85,7 +85,7 @@ const MovieDetailsPages = () => {
         <div >
             {console.log(details)}
             {details && <MovieDetailsList detailed={details} />}
-            <div className="container mx-auto ">
+            <div className="max-w-[1640px] mx-auto sm:max-w-screen-xl ">
                 <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl text-yellow-500 font-semibold mt-20">Similar Movies</h1>
                 {similarMoviesapi && similarMoviesapi.results && <TrendMovieList trendMovies={similarMoviesapi.results} />}
             

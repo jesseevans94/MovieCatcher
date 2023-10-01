@@ -9,6 +9,7 @@ import GenreList from "../components/GenreList";
 
 
 
+
 const HomePage = () => {
 
     const [guestId, setGuestId] = useState('');
@@ -174,62 +175,57 @@ const HomePage = () => {
 
     return (
         <div>
-            <nav className='bg-gray-800 border-b border-gray-600 '>
-                <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-                    <div className='flex justify-between h-16'>
-                        <div className='flex md:mr-14'>
-                            <div className='flex-shrink-0 flex items-center'>
-                                <span className='text-xl font-serif sm:text-3xl  md:text-3xl lg:text-4xl font-bold'><span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovies <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</span>
-                            </div>
-                            <div className='hidden xl:ml-10 lg:flex md:ml-2'>
-                                <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Movies</a>
-                                <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Tv Show</a>
-                                <Link to="/About" className="flex"> {/* Added 'flex items-center' */}
-                                    <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>About us</a>
-                                </Link>
-
-                            </div>
-                        </div>
-                        <div className='hidden md:flex items-center'>
-                            <div className="bg-gray-900 rounded-full flex items-center px-2 ">
-                                <AiOutlineSearch size={25} onClick={handleSearchClick} className="cursor-pointer" />
-                                <input className="bg-transparent p-2 focus:outline-none focus:border-blue-500 w-full" type="text" placeholder="Search" onChange={handleInputChange}
-                                    onKeyUp={handleKeyPress} />
-                            </div>
-
-                            <Link to='/login'>
-                                <button className="ml-4 rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Login</button>
-                            </Link>
-                        </div>
-
-                        <div className='lg:hidden flex items-center'>
-                            <div onClick={() => setNav(!nav)} className="cursor-pointer">
-                                <AiOutlineMenu size={30} />
-                            </div>
-                        </div>
-                        {nav ? <div className="bg-black/95 fixed w-full h-[50%] z-10 top-0 left-0"></div> : ''}
-                        {/* Side drawer menu */}
-                        {/* OverLay */}
-                        <div className={nav ? "fixed top-0 left-0 w-full h-[50%] bg-gray-800/40 z-10 duration-300 " : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"}>
-                            <AiOutlineClose onClick={() => setNav(!nav)} className="absolute right-4 top-4 cursor-pointer" size={30} />
-                            <h2 className="text-2xl p-4 font-serif"><span className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovie <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</h2>
-                            <nav>
-                                <div className=' flex flex-col text-center space-y-5 py-12'>
-                                    <a href="" className='text-gray-300  hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Movies</a>
-                                    <a href="" className='text-gray-300  hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Tv Show</a>
-                                    <Link to="/About">
-                                        <a href="" className='text-gray-300  hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>About us</a>
-                                    </Link>
-
-                                </div>
-                            </nav>
-
-                        </div>
-                    </div>
+            <nav className='bg-gray-800/80 border-b border-gray-600 fixed w-full z-10'>
+    <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
+        <div className='flex justify-between h-16'>
+            <div className='flex md:mr-14'>
+                <div className='flex-shrink-0 flex items-center'>
+                    <span className='text-xl font-serif sm:text-3xl  md:text-3xl lg:text-4xl font-bold'><span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovies <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</span>
                 </div>
-            </nav>
+                <div className='hidden xl:ml-10 lg:flex md:ml-2'>
+                    <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Movies</a>
+                    <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Tv Show</a>
+                    <Link to="/About" className="flex"> {/* Added 'flex items-center' */}
+                        <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>About us</a>
+                    </Link>
+                </div>
+            </div>
+            <div className='hidden md:flex items-center'>
+                <div className="bg-gray-900 rounded-full flex items-center px-2 ">
+                    <AiOutlineSearch size={25} onClick={handleSearchClick} className="cursor-pointer" />
+                    <input className="bg-transparent p-2 focus:outline-none focus:border-blue-500 w-full" type="text" placeholder="Search" onChange={handleInputChange}
+                        onKeyUp={handleKeyPress} />
+                </div>
+                <Link to='/login'>
+                    <button className="ml-4 rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Login</button>
+                </Link>
+            </div>
+            <div className='lg:hidden flex items-center'>
+                <div onClick={() => setNav(!nav)} className="cursor-pointer">
+                    <AiOutlineMenu size={30} />
+                </div>
+            </div>
+            {nav ? <div className="bg-black/95 fixed w-full h-[50%] z-10 top-0 left-0"></div> : ''}
+            {/* Side drawer menu */}
+            {/* OverLay */}
+            <div className={nav ? "fixed top-0 left-0 w-full h-[50%] bg-gray-800/40 z-10 duration-300 " : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"}>
+                <AiOutlineClose onClick={() => setNav(!nav)} className="absolute right-4 top-4 cursor-pointer" size={30} />
+                <h2 className="text-2xl p-4 font-serif"><span className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovie <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</h2>
+                <nav>
+                    <div className=' flex flex-col text-center space-y-5 py-12'>
+                        <a href="" className='text-gray-300  hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Movies</a>
+                        <a href="" className='text-gray-300  hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Tv Show</a>
+                        <Link to="/About">
+                            <a href="" className='text-gray-300  hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>About us</a>
+                        </Link>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
 
-            <button onClick={resetGuestIdHandler}>Reset Guest ID</button>
+            <button className="mt-16" onClick={resetGuestIdHandler}>Reset Guest ID</button>
             <div className="container mx-auto sm:max-w-screen-xl">
                 {/* Heading for Trending Movies */}
                 <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-semibold mt-20 px-6 py-4 rounded-lg shadow-lg">
