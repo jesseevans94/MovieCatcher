@@ -197,12 +197,13 @@ const HomePage = () => {
                         </div>
                         <div className='hidden md:flex items-center'>
                             <div className="bg-gray-900 rounded-full flex items-center px-2 ">
-                                <AiOutlineSearch size={25} onClick={handleSearchClick} className="cursor-pointer" />
+                                <AiOutlineSearch size={20} onClick={handleSearchClick} className="cursor-pointer" />
                                 <input className="bg-transparent p-2 focus:outline-none focus:border-blue-500 w-full" type="text" placeholder="Search" onChange={handleInputChange}
                                     onKeyUp={handleKeyPress} />
                             </div>
+                            {/* Login Button */}
                             <Link to='/login'>
-                                <button className="ml-4 rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Login</button>
+                                <button className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Login</button>
                             </Link>
                         </div>
                         <div className='lg:hidden flex items-center ml-5'>
@@ -216,8 +217,8 @@ const HomePage = () => {
                         <div className={nav ? "fixed top-0 left-0 w-full h-[50%] bg-gray-800/40 z-10 duration-300 " : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"}>
                             <AiOutlineClose onClick={() => setNav(!nav)} className="absolute right-4 top-4 cursor-pointer" size={30} />
                             <div className="flex items-center">
-                            <h2 className="text-2xl p-4 font-serif"><span className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovie <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</h2>
-                            <img
+                                <h2 className="text-2xl p-4 font-serif"><span className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovie <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</h2>
+                                <img
                                     src='https://icons.iconarchive.com/icons/iconarchive/fat-sugar-food/512/Popcorn-icon.png'
                                     alt='Movie Catcher Logo'
                                     className='h-10 mr-4 rotate-12' // Adjust the height and margin as needed
@@ -237,10 +238,23 @@ const HomePage = () => {
                 </div>
             </nav>
 
-            <button className="mt-16" onClick={resetGuestIdHandler}>Reset Guest ID</button>
-            <div className="container mx-auto sm:max-w-screen-xl">
+            <div className="max-w-full mx-auto sm:max-w-screen-xl flex flex-col sm:flex-row justify-between p-16 gap-2">
+    <button className="mt-4 sm:mt-0 shrink-0" onClick={resetGuestIdHandler}>Reset Guest ID</button>
+    <div className="flex flex-col sm:flex-row justify-between mt-4 sm:mt-0 sm:ml-10 items-center gap-3 p-5">
+        <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-0">
+            <label className="mr-2">Name:</label>
+            <input className="bg-gray-900 rounded-full px-3 py-2 text-sm text-black" placeholder="Name" onChange={listNameHandler} />
+        </div>
+        <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-0">
+            <label className="mr-2">Description:</label>
+            <input className="bg-gray-900 rounded-full px-3 py-2 text-sm text-black" placeholder="Description" onChange={listDescriptionHandler} />
+        </div>
+        <button className="mt-2 sm:mt-0 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out" onClick={createMovieListHandler}>Add List</button>
+    </div>
+</div>
+            <div className="max-w-[1640px] mx-auto sm:max-w-screen-xl">
                 {/* Heading for Trending Movies */}
-                <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-semibold mt-20 px-6 py-4 rounded-lg shadow-lg">
+                <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-semibold mt-20 px-6 py-4 rounded-lg shadow-lg mb-3">
                     Trending Movies
                 </h1>
 
