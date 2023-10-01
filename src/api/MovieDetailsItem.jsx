@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const MovieDetailsItem = (props) => {
     return (
-        <div className="p-3">
+        <div className="p-3 lg:px-10">
             <div className="container mx-auto mt-10 md:mt-20 border-b border-gray-500 pb-4 flex flex-col md:flex-row items-center">
 
                 {/* Movie Image */}
