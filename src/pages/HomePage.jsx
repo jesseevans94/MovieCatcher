@@ -174,106 +174,172 @@ const HomePage = () => {
 
 
     return (
-        <div className="">
+        <div className="max-w-[1640px] mx-auto w-full ">
             <nav className='bg-gray-800/80 border-b border-gray-600 fixed w-full z-10'>
-                <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
+                {/* Navbar container */}
+                <div className='max-w-[1640px] mx-auto px-4 sm:px-6 lg:px-8'>
+                    {/* Navbar content */}
                     <div className='flex justify-between h-16'>
+                        {/* Left side of the Navbar */}
                         <div className='flex md:mr-14'>
+                            {/* Logo and brand */}
                             <div className='flex-shrink-0 flex items-center'>
+                                {/* Movie Catcher Logo */}
                                 <span className='text-xl font-serif sm:text-3xl  md:text-3xl lg:text-4xl font-bold'><span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovies <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</span>
                                 <img
                                     src='https://icons.iconarchive.com/icons/iconarchive/fat-sugar-food/512/Popcorn-icon.png'
                                     alt='Movie Catcher Logo'
-                                    className='h-10 mr-4 rotate-12 ml-3' // Adjust the height and margin as needed
+                                    className='h-10 mr-4 rotate-12 ml-3'
                                 />
                             </div>
+
+                            {/* Navbar links for larger screens */}
                             <div className='hidden xl:ml-7 lg:flex md:ml-2 shrink-0'>
                                 <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Movies</a>
                                 <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>Tv Show</a>
-                                <Link to="/About" className="flex"> {/* Added 'flex items-center' */}
+                                <Link to="/About" className="flex">
                                     <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium'>About us</a>
                                 </Link>
                             </div>
                         </div>
+
+                        {/* Right side of the Navbar */}
                         <div className='hidden md:flex items-center'>
+                            {/* Search bar */}
                             <div className="bg-gray-900 rounded-full flex items-center px-2 ">
                                 <AiOutlineSearch size={20} onClick={handleSearchClick} className="cursor-pointer" />
-                                <input className="bg-transparent p-2 focus:outline-none focus:border-blue-500 w-full" type="text" placeholder="Search" onChange={handleInputChange}
-                                    onKeyUp={handleKeyPress} />
+                                <input className="bg-transparent p-2 focus:outline-none focus:border-blue-500 w-full" type="text" placeholder="Search" onChange={handleInputChange} onKeyUp={handleKeyPress} />
                             </div>
-                            {/* Login Button */}
+
+                            {/* Login button */}
                             <Link to='/login'>
                                 <button className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Login</button>
                             </Link>
                         </div>
+
+                        {/* Hamburger menu for smaller screens */}
                         <div className='lg:hidden flex items-center ml-5'>
                             <div onClick={() => setNav(!nav)} className="cursor-pointer">
                                 <AiOutlineMenu size={30} />
                             </div>
                         </div>
-                        {nav ? <div className="bg-black/95 fixed w-full h-[50%] z-10 top-0 left-0"></div> : ''}
-                        {/* Side drawer menu */}
-                        {/* OverLay */}
-                        <div className={nav ? "fixed top-0 left-0 w-full h-[50%] bg-gray-800/40 z-10 duration-300 " : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"}>
+
+                        {/* Overlay for the mobile menu */}
+                        {nav ? <div className="bg-black/70 fixed w-full h-[50%] z-10 top-0 left-0"></div> : ''}
+                        {/* Mobile menu */}
+                        <div className={nav ? "fixed top-0 left-0 w-full h-[50%] bg-gray-800/40 z-10 duration-300" : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"}>
                             <AiOutlineClose onClick={() => setNav(!nav)} className="absolute right-4 top-4 cursor-pointer" size={30} />
                             <div className="flex items-center">
                                 <h2 className="text-2xl p-4 font-serif"><span className="font-extrabold text-transparent text-4xl bg-clip-text bg-gradient-to-br from-white to-red-600">M</span>ovie <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-white to-red-600">C</span>atcher</h2>
                                 <img
                                     src='https://icons.iconarchive.com/icons/iconarchive/fat-sugar-food/512/Popcorn-icon.png'
                                     alt='Movie Catcher Logo'
-                                    className='h-10 mr-4 rotate-12' // Adjust the height and margin as needed
+                                    className='h-10 mr-4 rotate-12'
                                 />
                             </div>
+
                             <nav>
+                                {/* Mobile menu links */}
                                 <div className=' flex flex-col text-center space-y-5 py-12'>
-                                    <a href="" className='text-gray-300  hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Movies</a>
-                                    <a href="" className='text-gray-300  hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Tv Show</a>
+                                    <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Movies</a>
+                                    <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>Tv Show</a>
                                     <Link to="/About">
-                                        <a href="" className='text-gray-300  hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>About us</a>
+                                        <a href="" className='text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-4xl font-medium'>About us</a>
                                     </Link>
                                 </div>
                             </nav>
+
                         </div>
                     </div>
                 </div>
             </nav>
 
-            <div className="max-w-full mx-auto sm:max-w-screen-xl flex flex-col sm:flex-row justify-between p-16 gap-2">
-    <button className="mt-4 sm:mt-0 shrink-0" onClick={resetGuestIdHandler}>Reset Guest ID</button>
-    <div className="flex flex-col sm:flex-row justify-between mt-4 sm:mt-0 sm:ml-10 items-center gap-3 p-5">
-        <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-0">
-            <label className="mr-2">Name:</label>
-            <input className="bg-gray-900 rounded-full px-3 py-2 text-sm text-black" placeholder="Name" onChange={listNameHandler} />
-        </div>
-        <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-0">
-            <label className="mr-2">Description:</label>
-            <input className="bg-gray-900 rounded-full px-3 py-2 text-sm text-black" placeholder="Description" onChange={listDescriptionHandler} />
-        </div>
-        <button className="mt-2 sm:mt-0 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out" onClick={createMovieListHandler}>Add List</button>
-    </div>
-</div>
+            {/* Container for the layout */}
+            <div className="container mx-auto sm:max-w-screen-xl flex flex-col sm:flex-row justify-between py-16 gap-2">
+                {/* Reset Guest ID button */}
+                <div className="flex flex-col sm:flex-row justify-between mt-4 sm:mt-0 sm:ml-10 items-center gap-3 p-5">
+                    <button
+                        className="mt-4 sm:mt-0 shrink-0 text-sm bg-blue-500 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition duration-300 ease-in-out"
+                        onClick={resetGuestIdHandler}
+                    >
+                        Reset Guest ID
+                    </button>
+                </div>
+
+                {/* Form for adding a movie list */}
+                <div className="flex flex-col sm:flex-row justify-between mt-4 sm:mt-0 sm:ml-10 items-center gap-3 p-5">
+                    {/* Name input */}
+                    <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-0">
+                        <label className="mr-2">Name:</label>
+                        <input
+                            className="bg-gray-900 rounded-full focus:ring-2 focus:ring-blue-500 focus:outline-none px-3 py-2 text-sm text-white"
+                            placeholder="Name"
+                            onChange={listNameHandler}
+                        />
+                    </div>
+
+                    {/* Description input */}
+                    <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-0">
+                        <label className="mr-2">Description:</label>
+                        <input
+                            className="bg-gray-900 rounded-full focus:ring-2 focus:ring-blue-500 focus:outline-none px-3 py-2 text-sm text-white"
+                            placeholder="Description"
+                            onChange={listDescriptionHandler}
+                        />
+                    </div>
+
+                    {/* Add List button */}
+                    <button
+                        className="mt-2 sm:mt-0 text-sm rounded-full bg-blue-500 hover:bg-blue-700 text-white font-semibold px-5 py-2 transition duration-300 ease-in-out"
+                        onClick={createMovieListHandler}
+                    >
+                        Add List
+                    </button>
+                </div>
+            </div>
+
             <div className="max-w-[1640px] mx-auto sm:max-w-screen-xl">
-                {/* Heading for Trending Movies */}
-                <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-semibold mt-20 px-6 py-4 rounded-lg shadow-lg mb-3">
+                <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold mt-20 px-6 py-4 rounded-lg shadow-lg mb-3">
                     Trending Movies
                 </h1>
 
                 {/* Display a list of genres */}
                 <GenreList />
 
-                {/* separator */}
+                {/* Separator */}
                 <div className="border-b border-gray-600 mt-4 mb-5"></div>
                 {trendMovies.results && <TrendMovieList trendMovies={trendMovies.results} />}
             </div>
+
             <div className="flex items-center justify-center mt-3">
-                <button onClick={previousPageHandler} className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full mr-3 transition duration-300 ease-in-out">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                <button
+                    onClick={previousPageHandler}
+                    className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full mr-3 transition duration-300 ease-in-out"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                    >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
                     </svg>
                 </button>
                 <p className="text-lg">Current Page: {page}</p>
-                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full ml-3 transition duration-300 ease-in-out" onClick={nextPageHandler}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                <button
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full ml-3 transition duration-300 ease-in-out"
+                    onClick={nextPageHandler}
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                    >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                     </svg>
                 </button>
