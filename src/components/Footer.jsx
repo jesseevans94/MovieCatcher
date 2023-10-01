@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className='bg-gray-800 mt-2 border-t border-gray-600'>
+        <footer className='bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r mt-2 border-t border-gray-600'>
             <div className="px-4 py-12 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
                 <div className="flex justify-center mt-8 space-x-6 text-gray-600">
                     <a href="#" className="text-gray-00 hover:text-gray-500">

@@ -303,7 +303,7 @@ const HomePage = () => {
             <div className="flex items-center justify-center mt-3">
                 <button
                     onClick={previousPageHandler}
-                    className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full mr-3 transition duration-300 ease-in-out"
+                    className="bg-gradient-to-tr from-black via-gray-800 to-transparent text-white font-bold py-2 px-4 rounded-full mr-3 transition duration-300 ease-in-out hover:bg-gray-700 hover:text-gray-200"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -318,7 +318,7 @@ const HomePage = () => {
                 </button>
                 <p className="text-lg">Current Page: {page}</p>
                 <button
-                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full ml-3 transition duration-300 ease-in-out"
+                    className="bg-gradient-to-tr from-black via-gray-800 to-transparent text-white font-bold py-2 px-4 rounded-full ml-3 transition duration-300 ease-in-out hover:bg-gray-700 hover:text-gray-200"
                     onClick={nextPageHandler}
                 >
                     <svg
