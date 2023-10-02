@@ -109,7 +109,7 @@ const TrendMovieItem = (props) => {
           pathname: "/movieDetails",
           search: `?id=${encodeURIComponent(props.id)}`,
         }}
-        className="flex flex-col h-full"
+        className="flex flex-col"
       >
         <div
           className={`relative overflow-hidden rounded-lg shadow-lg transform transition-transform duration-300 hover:shadow-xl ${isHovered ? 'scale-110' : ''}`}
