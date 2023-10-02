@@ -1,6 +1,99 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 
 const MovieDetailsItem = (props) => {
+    const [isLiked, setIsLiked] = useState(false);
+    const [favorites, setFavorites] = useState(false);
+    useEffect(() => {
+        checkFavorite();
+    }, []);
+
+    const checkFavorite = () => {
+        
+        const url = `https://api.themoviedb.org/3/account/20465724/favorite/movies?language=en-US&page=1&session_id=${localStorage.getItem('SessionID')}&sort_by=created_at.asc`;
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+            }
+        };
+
+        fetch(url, options)
+            .then(res => res.json())
+            .then(json => {
+                console.log("Movie ID", json.results)
+                const isMovieLiked = json.results.some(movie => movie.id === props.id)
+                setIsLiked(isMovieLiked)
+                if (isMovieLiked) {
+                    setFavorites(true)
+                } else {
+                    setFavorites(false)
+                }
+            }
+            )
+            .catch(err => console.error('error:' + err));
+    }
+    const Favorites = () => {
+        const url = `https://api.themoviedb.org/3/account/20465724/favorite?session_id=${localStorage.getItem('SessionID')}`;
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+            },
+            body: JSON.stringify({ media_type: 'movie', media_id: props.id, favorite: true })
+        };
+
+        fetch(url, options)
+            .then(res => res.json())
+            .then(json => console.log(json))
+            .catch(err => console.error('error:' + err));
+    }
+
+    const RemoveFavorites = () => {
+        const url = `https://api.themoviedb.org/3/account/20465724/favorite?session_id=${localStorage.getItem('SessionID')}`;
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+            },
+            body: JSON.stringify({ media_type: 'movie', media_id: props.id, favorite: false })
+        };
+
+        fetch(url, options)
+            .then(res => res.json())
+            .then(json => console.log(json))
+            .catch(err => console.error('error:' + err));
+
+        fetch(url, options)
+            .then(res => res.json())
+            .then(json => console.log(json))
+            .catch(err => console.error('error:' + err));
+    }
+
+
+    const handleLike = () => {
+        setIsLiked(!isLiked);
+        if (!isLiked && !favorites) {
+            Favorites()
+            console.log("LikePressed", props.id)
+        } else {
+            RemoveFavorites()
+            console.log("RemovePressed", props.id);
+        }
+    }
+
+    const getButtonText = () => {
+        if (isLiked) {
+            return "Remove from Favorites"
+        } else {
+            return "Add to Favorites"
+        }
+    }
     return (
 
         <div className="max-w-[1640px] mx-auto sm:max-w-screen-xl mt-10 md:mt-20 border-b border-gray-500 pb-4 flex flex-col md:flex-row items-center p-3">
@@ -55,7 +148,7 @@ const MovieDetailsItem = (props) => {
                     <a href="#" className="rounded-md bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white px-5 py-2 font-semibold mb-3 md:mb-0 md:mr-3 transition duration-300 ease-in-out">Play Trailer</a>
 
                     {/* Add to Favorites Button */}
-                    <a href="#" className="rounded-md bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Add to Favorites</a>
+                    <button onClick={handleLike} className="rounded-md bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">{getButtonText()}</button>
                 </div>
 
                 {/* Back to Home Button */}
