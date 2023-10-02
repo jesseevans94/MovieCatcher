@@ -4,8 +4,9 @@ import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import TrendMovieList from "../api/TrendMovieList";
 import Verification from "./Verification";
 import Footer from "../Footer";
-import MovieDetailsList from "../api/MovieDetailsList";
+
 import GenreList from "../components/GenreList";
+import userNameHandler from "../components/userNameHandler";
 
 
 
@@ -16,7 +17,8 @@ const HomePage = () => {
     const [trendMovies, setTrendMovies] = useState([]);
     const [page, setPage] = useState(1)
     const [activeSearchBoolean, setactiveSearchBoolean] = useState(false)
-    const [selectedMovie, setSelectedMovie] = useState(null)
+    let userNameVar = ''
+
 
     const nextPageHandler = () => {
         if (page < totalPages) {
@@ -45,10 +47,11 @@ const HomePage = () => {
     }
 
     useEffect(() => {
-        // generateGuestId()
-        if (!localStorage.getItem('guestID')) {
-            Verification()
-        }
+        // if (!localStorage.getItem('guestID') && !localStorage.getItem('SessionID')) {
+        //     console.log('no login')
+            
+        // }
+         userNameVar = localStorage.getItem('userName')
         console.log("ID from main", localStorage.getItem('guestID'))
         setGuestId(localStorage.getItem('guestID'))
         if (!inputValue && !activeSearchBoolean) { loadTrendMovies(page) }
@@ -197,7 +200,7 @@ const HomePage = () => {
                                     onKeyUp={handleKeyPress} />
                             </div>
 
-                            <Link to='/login'>
+                            <Link to='/Verification'>
                                 <button className='ml-4 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-full text-sm px-5 py-2.5 '>Login</button>
                             </Link>
                         </div>
@@ -261,7 +264,17 @@ const HomePage = () => {
 
             <div className="flex justify-between px-5 my-10">
                 <p className="text-lg">Total Pages: {totalPages}</p>
-                <p className="text-lg">Guest ID: {guestId}</p>
+                <p className="text-lg">
+                {!guestId ? (
+                    
+                    <p>  
+                    {userNameHandler()}
+                    {userNameVar}
+                    </p>
+                ):(
+                    <p>Guest ID: {guestId}</p>
+                )}
+                </p>
             </div>
             <Footer />
 

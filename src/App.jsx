@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/Signup";
 import MovieDetailsPages from "./pages/MovieDetailsPages";
 import AboutPage from "./pages/AboutPage";
+import Verification from "./pages/Verification";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path='/signup' element={<SignupPage/>}/>
         <Route path='/movieDetails' element={<MovieDetailsPages />}/>
         <Route path='/About' element={<AboutPage />} />
+        <Route path='/Verification' element={<Verification />} />
       </Routes>
     </Layout>
   )
