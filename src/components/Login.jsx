@@ -19,8 +19,8 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createSessionHandler();
-        
+        // createSessionHandler();
+
     }
 
     useEffect(() => {
@@ -53,7 +53,7 @@ export default function Login() {
             window.open(`https://www.themoviedb.org/authenticate/${newTokenId}`)
         }
     }
-    
+
     const createSessionHandler = () => {
         console.log("creating session")
         const url = 'https://api.themoviedb.org/3/authentication/token/validate_with_login';
@@ -121,6 +121,36 @@ export default function Login() {
             })
             .catch(err => console.error('error:' + err));
     }
+
+    const loginTest = () => {
+        const url = 'https://api.themoviedb.org/3/authentication/session/new';
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+            },
+            body: JSON.stringify({ request_token: newToken })
+        };
+
+        fetch(url, options)
+            .then(res => res.json())
+            .then(json => {
+                localStorage.setItem('SessionID', json.session_id)
+                localStorage.removeItem("guestID")
+                console.log("Your session ID:", json.session_id)
+                if (json.success === true) {
+                    alert(json.success)
+                    document.location.href='/'
+                }
+                if (json.success === false) {
+
+                    alert(json.success)
+                }
+            })
+            .catch(err => console.error('error:' + err));
+    }
     return (
         <div>
             <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -144,6 +174,7 @@ export default function Login() {
                 </div>
                 <FormExtra />
                 <FormAction handleSubmit={handleSubmit} text="Login" />
+                <button onClick={loginTest}>Test Login</button>
             </form>
 
 
