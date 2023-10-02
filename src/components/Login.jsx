@@ -19,17 +19,14 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        authenticateUser();
+        createSessionHandler();
+        
     }
 
     useEffect(() => {
         generateTokenID();
     }, [newToken]);
 
-    const authenticateUser = () => {
-        createSessionHandler()
-        // generateSessionID()
-    }
     const generateTokenID = () => {
         const url = 'https://api.themoviedb.org/3/authentication/token/new';
         const options = {
@@ -56,6 +53,7 @@ export default function Login() {
             window.open(`https://www.themoviedb.org/authenticate/${newTokenId}`)
         }
     }
+    
     const createSessionHandler = () => {
         console.log("creating session")
         const url = 'https://api.themoviedb.org/3/authentication/token/validate_with_login';
@@ -73,27 +71,31 @@ export default function Login() {
             }),
         };
 
-        console.log("options with credintials:", options)
+        console.log("options with credentials:", options)
         fetch(url, options)
             .then(res => res.json())
             .then(json => {
                 generateSessionID(json.request_token)
                 console.log("authenticate token with credentials", json)
-                
-                
+
+
             })
             .catch(err => console.error('error:' + err));
 
     }
     const generateSessionID = (request_token1) => {
-        console.log("request token:", request_token1)
-        const url = 'https://api.themoviedb.org/3/authentication/session/new';
+        const baseUrl = 'https://api.themoviedb.org/3/authentication/session/new'
+        const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+        const requestToken = request_token1;
+
+        console.log("request token:", requestToken)
+        const url = `${baseUrl}?api_key=${apiKey}&request_token=${requestToken}`
         const options = {
             method: 'POST',
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+                Authorization: `Bearer ${apiKey}`
             },
             body: JSON.stringify({
                 request_token: request_token1
@@ -107,41 +109,45 @@ export default function Login() {
                 localStorage.setItem('SessionID', json.session_id)
                 localStorage.removeItem("guestID")
                 console.log("Your session ID:", json.session_id)
-                if(json.success===true){
+                if (json.success === true) {
                     alert(json.success)
-                    Verification().userNameHandler()
+                    // Verification().userNameHandler()
                 }
-                
+                if (json.success === false) {
+
+                    alert(json.success)
+                }
+
             })
             .catch(err => console.error('error:' + err));
     }
     return (
         <div>
-                    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="-space-y-px">
-                {
-                    fields.map(field =>
-                        <Input
-                            key={field.id}
-                            handleChange={handleChange}
-                            value={loginState[field.id]}
-                            labelText={field.labelText}
-                            labelFor={field.labelFor}
-                            id={field.id}
-                            name={field.name}
-                            type={field.type}
-                            isRequired={field.isRequired}
-                            placeholder={field.placeholder}
-                        />
-                    )
-                }
-            </div>
-            <FormExtra />
-            <FormAction handleSubmit={handleSubmit} text="Login" />
-        </form>
-                
-                
-            
+            <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+                <div className="-space-y-px">
+                    {
+                        fields.map(field =>
+                            <Input
+                                key={field.id}
+                                handleChange={handleChange}
+                                value={loginState[field.id]}
+                                labelText={field.labelText}
+                                labelFor={field.labelFor}
+                                id={field.id}
+                                name={field.name}
+                                type={field.type}
+                                isRequired={field.isRequired}
+                                placeholder={field.placeholder}
+                            />
+                        )
+                    }
+                </div>
+                <FormExtra />
+                <FormAction handleSubmit={handleSubmit} text="Login" />
+            </form>
+
+
+
         </div>
     )
 }
