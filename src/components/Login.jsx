@@ -105,6 +105,7 @@ export default function Login() {
             .then(json => {
                 console.log("Session ID ", json)
                 localStorage.setItem('SessionID', json.session_id)
+                localStorage.removeItem("guestID")
                 console.log("Your session ID:", json.session_id)
                 if(json.success===true){
                     alert(json.success)
