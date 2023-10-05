@@ -4,9 +4,9 @@ import { AiOutlineMenu, AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import TrendMovieList from "../api/TrendMovieList";
 import Verification from "./Verification";
 import Footer from "../components/Footer";
-import MovieDetailsList from "../api/MovieDetailsList";
 import GenreList from "../components/GenreList";
 import userNameHandler from "../components/userNameHandler";
+import LogoutHandler from "../components/LogoutHandler";
 
 
 
@@ -18,6 +18,7 @@ const HomePage = () => {
     const [page, setPage] = useState(1)
     const [activeSearchBoolean, setactiveSearchBoolean] = useState(false)
     let userNameVar = ''
+    let newToken=''
 
 
     const nextPageHandler = () => {
@@ -174,6 +175,79 @@ const HomePage = () => {
         setGuestId(localStorage.getItem('guestID'))
     }
 
+    const verifyLogin =() =>{
+        userNameHandler()
+        if(!localStorage.getItem('userName'))  {
+            
+            const url = 'https://api.themoviedb.org/3/authentication/token/new';
+            const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+            }
+        };
+
+        fetch(url, options)
+            .then(res => res.json())
+            .then(json => {
+                console.log("new token:", json)
+                newToken = json.request_token
+                window.open(`https://www.themoviedb.org/authenticate/${newToken}`)
+                const shouldAuthenticate = window.confirm("Do you want to authenticate?");
+        if (shouldAuthenticate) {
+            authenticate()
+        } else {
+            console.log("not authentication")
+            localStorage.removeItem('userName')
+        }
+                
+                
+            })
+            .catch(err => console.error('error:' + err));
+        } else {
+            console.log("logout")
+    }
+    }
+
+    
+
+    const authenticate =() =>{
+        localStorage.removeItem("SessionID")
+        console.log("before sending: ", newToken)
+        const url = 'https://api.themoviedb.org/3/authentication/session/new';
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                Host: 'api.themoviedb.org',
+                'Content-Length': '72',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+            },
+            body: JSON.stringify({ request_token: newToken })
+            // body: { 'request_token': newToken }
+        };
+        console.log("the options: ", options)
+        fetch(url, options)
+            .then(res => res.json())
+            .then(json => {
+                console.log("Your session ID:", json)
+                localStorage.setItem('SessionID', json.session_id)
+                localStorage.removeItem("guestID")
+                if (json.success === true) {
+                    userNameHandler()
+                    location.reload()
+                }
+                if (json.success === false) {
+                    alert(json.success)
+                }
+            })
+            .catch(err => console.error('error:' + err));
+    }
+    const logOut =() =>{
+        LogoutHandler()
+    }
 
     return (
         <div className="max-w-[1640px] mx-auto">
@@ -196,7 +270,7 @@ const HomePage = () => {
                             {/* Navbar links for larger screens */}
                             <div className="hidden lg:flex ml-2 shrink-0">
                                 <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">Movies</a>
-                                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">Tv Show</a>
+                                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium"><Link to='/TvShow'>Tv Show</Link></a>
                                 <Link to="/About" className="flex">
                                     <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">About us</a>
                                 </Link>
@@ -209,10 +283,23 @@ const HomePage = () => {
                                 <AiOutlineSearch size={20} onClick={handleSearchClick} className="cursor-pointer" />
                                 <input className="bg-transparent p-2 focus:outline-none focus:border-blue-500 w-full" type="text" placeholder="Search" onChange={handleInputChange} onKeyUp={handleKeyPress} />
                             </div>
+                            <p className="text-lg">
+                    {(localStorage.getItem('userName')) ? (
+                        <p>
+                            {userNameHandler()}
+                            {localStorage.getItem('userName')}
+                        </p>
+                    ) : (
+                        <p>Guest</p>
+                        
+                    )}
+                </p>
+                            
+<button onClick={verifyLogin} className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Login</button>
+<button onClick={authenticate} className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Authenticate</button>
+<button onClick={logOut} className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Logout</button>
 
-                            <Link to='/Verification'>
-                                <button className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Login</button>
-                            </Link>
+                            
                         </div>
                         {/* Hamburger menu for smaller screens */}
                         <div className="lg:hidden flex items-center ml-5" onClick={() => setNav(!nav)}>
@@ -249,12 +336,14 @@ const HomePage = () => {
             <div className="container mx-auto sm:max-w-screen-xl flex flex-col sm:flex-row justify-between py-16 gap-2">
                 {/* Reset Guest ID button */}
                 <div className="flex flex-col sm:flex-row justify-between mt-4 sm:mt-0 sm:ml-10 items-center gap-3 p-5">
+                    <Link to='/Favorites'>
                     <button
                         className="mt-4 sm:mt-0 shrink-0 text-sm bg-blue-500 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition duration-300 ease-in-out"
-                        onClick={resetGuestIdHandler}
+                        
                     >
-                        Reset Guest ID
+                        Favorites
                     </button>
+                    </Link>
                 </div>
 
                 {/* Form for adding a movie list */}
@@ -339,20 +428,18 @@ const HomePage = () => {
             <div className="flex justify-between px-5 my-10">
                 <p className="text-lg">Total Pages: {totalPages}</p>
                 <p className="text-lg">
-                    {!guestId ? (
+                    {(localStorage.getItem('userName')) ? (
                         <p>
                             {userNameHandler()}
-                            
                             {localStorage.getItem('userName')}
                         </p>
                     ) : (
-                        <p>Guest ID: {guestId}</p>
+                        <p>Guest</p>
+                        
                     )}
                 </p>
             </div>
             <Footer />
-
-
         </div>
     )
 }

@@ -7,6 +7,9 @@ import SignupPage from "./pages/Signup";
 import MovieDetailsPages from "./pages/MovieDetailsPages";
 import AboutPage from "./pages/AboutPage";
 import Verification from "./pages/Verification";
+import LoginIn from "./pages/LoginIn";
+import Favorites from "./pages/favorites";
+import TvShow from "./pages/TvShow";
 
 
 function App() {
@@ -31,10 +34,13 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/loginIn' element={<LoginIn />} />
         <Route path='/signup' element={<SignupPage/>}/>
         <Route path='/movieDetails' element={<MovieDetailsPages />}/>
         <Route path='/About' element={<AboutPage />} />
         <Route path='/Verification' element={<Verification />} />
+        <Route path='/Favorites' element={<Favorites />} />
+        <Route path='/TvShow' element={<TvShow />} />
       </Routes>
     </Layout>
   )

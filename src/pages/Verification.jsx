@@ -6,7 +6,7 @@ const Verification = () => {
 
     const [sessionId, setSessionID] = useState('')
     const [username, setUsername] = useState('')
-    
+    let newToken=''
     useEffect(() => {
         setSessionID(localStorage.getItem('SessionID'))
     console.log("Session ID",sessionId)
@@ -29,6 +29,7 @@ const Verification = () => {
             .then(res => res.json())
             .then(json => {
                 setUsername(json.username)
+                localStorage.setItem('username',json.username)
                 console.log("username handler: ",json.username)
             })
             .catch(err => console.error('error: ' + err));
@@ -53,26 +54,59 @@ const Verification = () => {
                 console.log(json)
                 localStorage.removeItem('SessionID')
                 localStorage.removeItem('userName')
-                alert(json.success)
-                location.reload()
+                
+                document.location.href='/'
             })
             .catch(err => console.error('error:' + err));
     }
 
-    const generateGuestID = () => {
-        const url = 'https://api.themoviedb.org/3/authentication/guest_session/new';
+    const generateTokenID = () => {
+        const url = 'https://api.themoviedb.org/3/authentication/token/new';
         const options = {
             method: 'GET',
             headers: {
                 accept: 'application/json',
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
             }
-        }
+        };
+
         fetch(url, options)
             .then(res => res.json())
             .then(json => {
-                console.log("guest ID from verification", json.guest_session_id)
-                localStorage.setItem('guestID', json.guest_session_id)
+                console.log("new token:", json)
+                newToken = json.request_token
+                window.open(`https://www.themoviedb.org/authenticate/${newToken}`)
+            })
+            .catch(err => console.error('error:' + err));
+    }
+
+    const login = () => {
+        console.log("before sending: ", newToken)
+        const url = 'https://api.themoviedb.org/3/authentication/session/new';
+        const options = {
+            method: 'POST',
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                Host: 'api.themoviedb.org',
+                'Content-Length': '72',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Yzc4MzgyOTIzYzdmMTZhNzRiNzliY2Y0MmRiY2I4YyIsInN1YiI6IjY1MGE0MTZlMGQ1ZDg1MDBmZGI3NTBkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5vlhHdCU3GL4v5Tirdkb84CfhgTRB-kYoOx2IotsQK0'
+            },
+            body: JSON.stringify({ request_token: newToken })
+        };
+        console.log("the options: ", options)
+        fetch(url, options)
+            .then(res => res.json())
+            .then(json => {
+                console.log("Your session ID:", json)
+                localStorage.setItem('SessionID', json.session_id)
+                if (json.success === true) {
+                    
+                    document.location.href='/'
+                }
+                if (json.success === false) {
+                    alert(json.success)
+                }
             })
             .catch(err => console.error('error:' + err));
     }
@@ -83,7 +117,7 @@ const Verification = () => {
             <div>
                 <p> you logging in as {username}
                 {username==="mohanad.bme.ust@gmail.com" ? (
-                    <div><Link to='/login'>click to login</Link></div>
+                    <button><Link to='/login'>click to login</Link></button>
                 ):(
                     <div><Link to='/'>Click here to go back</Link></div>
                 )}</p>
@@ -91,8 +125,9 @@ const Verification = () => {
             </div>
         ) : (
             <div>
-            <p><Link to='/login'>Click here to login</Link></p>
-            <button onClick={generateGuestID}><Link to='/'>Login as guest</Link></button>
+            <p><button onClick={generateTokenID}>Click here to Authenticate</button></p>
+            <div><button onClick={login}>Let me in</button></div>
+            {/* <button onClick={generateGuestID}><Link to='/'>Login as guest</Link></button> */}
             </div>
         )}
     </div>)
