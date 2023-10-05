@@ -296,7 +296,7 @@ const HomePage = () => {
                 </p>
                             
 <button onClick={verifyLogin} className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Login</button>
-<button onClick={authenticate} className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Authenticate</button>
+{/* <button onClick={authenticate} className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Authenticate</button> */}
 <button onClick={logOut} className="ml-4 text-sm rounded-full bg-gradient-to-r from-gray-500 to-gray-700 hover:from-gray-700 hover:to-gray-900 text-white px-5 py-2 font-semibold transition duration-300 ease-in-out">Logout</button>
 
                             
