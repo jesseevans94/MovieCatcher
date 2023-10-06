@@ -269,8 +269,8 @@ const HomePage = () => {
                             </div>
                             {/* Navbar links for larger screens */}
                             <div className="hidden lg:flex ml-2 shrink-0">
-                                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">Movies</a>
-                                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium"><Link to='/TvShow'>Tv Show</Link></a>
+                                <Link to='/' className="flex"><a className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">Movies</a></Link>
+                                <Link to='/TvShow' className="flex"><a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">Tv Show</a></Link>
                                 <Link to="/About" className="flex">
                                     <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white transition duration-1000 px-3 py-3 rounded-full text-sm font-medium">About us</a>
                                 </Link>

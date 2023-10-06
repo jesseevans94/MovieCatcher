@@ -10,6 +10,7 @@ import Verification from "./pages/Verification";
 import LoginIn from "./pages/LoginIn";
 import Favorites from "./pages/favorites";
 import TvShow from "./pages/TvShow";
+import TVDetailsPages from "./pages/TVDetailsPages";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path='/Verification' element={<Verification />} />
         <Route path='/Favorites' element={<Favorites />} />
         <Route path='/TvShow' element={<TvShow />} />
+        <Route path='/TvDetailsPage' element={<TVDetailsPages />} />
       </Routes>
     </Layout>
   )
