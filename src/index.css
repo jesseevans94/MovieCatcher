@@ -3,3 +3,9 @@
 @tailwind utilities;
 
 
+.dark .bg-primary {
+    background-color: #070606;
+    }
+.dark .text-primary {
+    color: #0DB08D;
+}

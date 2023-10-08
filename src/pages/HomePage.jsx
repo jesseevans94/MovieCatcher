@@ -12,6 +12,20 @@ import LogoutHandler from "../components/LogoutHandler";
 
 const HomePage = () => {
 
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  });
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+
     const [guestId, setGuestId] = useState('');
     const [totalPages, settotalPages] = useState('');
     const [trendMovies, setTrendMovies] = useState([]);
@@ -250,7 +264,9 @@ const HomePage = () => {
     }
 
     return (
+
         <div className="max-w-[1640px] mx-auto">
+         <div className={`bg-primary text-primary ${isDarkMode ? "dark" : ""}`}>
             <nav className="max-w-[1640px] mx-auto bg-gray-800/80 border-b border-gray-600 fixed w-full z-10">
                 {/* Navbar container */}
                 <div className="max-w-[1640px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -331,6 +347,8 @@ const HomePage = () => {
                     </div>
                 </div>
             </nav>
+
+            <button className="mt-20" onClick={toggleDarkMode}>toggleDarkMode</button>
 
             {/* Container for the layout */}
             <div className="container mx-auto sm:max-w-screen-xl flex flex-col sm:flex-row justify-between py-16 gap-2">
@@ -438,6 +456,7 @@ const HomePage = () => {
                         
                     )}
                 </p>
+            </div>
             </div>
             <Footer />
         </div>
